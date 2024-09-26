@@ -2,10 +2,12 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import { LoginForm } from "./_components/form";
+import { TelegramButton } from "./_components/telegram";
 
 const LoginPage = () => (
   <div className="w-screen h-screen flex items-center justify-center">
@@ -19,6 +21,9 @@ const LoginPage = () => (
       <CardContent>
         <LoginForm />
       </CardContent>
+      <CardFooter>
+        <TelegramButton />
+      </CardFooter>
     </Card>
   </div>
 );
