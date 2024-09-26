@@ -1,5 +1,8 @@
 import { cn } from "@/lib/utils";
 import { BentoCell } from "./cell";
+import { Button } from "../ui/button";
+import Link from "next/link";
+import { LogoutButton } from "../logout-button";
 
 const BentoGrid: React.FC<
   Readonly<{
@@ -12,31 +15,59 @@ const BentoGrid: React.FC<
       className
     )}
   >
-    <BentoCell
-      className="bg-red-400"
-      width="highlight"
-      height="hero"
-    />
+    <Button
+      asChild
+      size="widget"
+    >
+      <BentoCell
+        width="highlight"
+        height="hero"
+        asChild
+      >
+        <Link
+          className="block"
+          href="/login"
+        >
+          Login
+        </Link>
+      </BentoCell>
+    </Button>
     <BentoCell
       className="bg-blue-400"
       width="accent"
       height="accent"
     />
+
     <BentoCell
       className="bg-purple-400"
       width="anchor"
       height="side"
     />
+    <Button
+      asChild
+      size="widget"
+      variant="secondary"
+    >
+      <BentoCell
+        width="side"
+        height="highlight"
+        asChild
+      >
+        <Link href="/dashboard">Dashboard</Link>
+      </BentoCell>
+    </Button>
     <BentoCell
-      className="bg-yellow-400"
-      width="side"
-      height="highlight"
-    />
-    <BentoCell
-      className="bg-emerald-400"
       width="hero"
       height="side"
-    />
+      asChild
+    >
+      <LogoutButton
+        variant="destructive"
+        size="widget"
+      >
+        Logout
+      </LogoutButton>
+    </BentoCell>
   </div>
 );
 

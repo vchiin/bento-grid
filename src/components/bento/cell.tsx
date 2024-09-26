@@ -1,4 +1,6 @@
+import { Slot } from "@radix-ui/react-slot";
 import { cva, VariantProps } from "class-variance-authority";
+import { forwardRef } from "react";
 
 const variants = cva("rounded-md transition-all", {
   variants: {
@@ -18,14 +20,26 @@ const variants = cva("rounded-md transition-all", {
   },
 });
 
-const BentoCell: React.FC<
+const BentoCell = forwardRef<
+  HTMLDivElement,
   Readonly<
     {
       className?: string;
+      children?: string | React.ReactElement;
+      asChild?: boolean;
     } & VariantProps<typeof variants>
   >
-> = ({ className, width, height }) => (
-  <div className={variants({ className, width, height })} />
-);
+>(({ className, width, height, asChild, ...properties }, reference) => {
+  const Comp = asChild ? Slot : "div";
+  return (
+    <Comp
+      className={variants({ className, width, height })}
+      ref={reference}
+      {...properties}
+    />
+  );
+});
+
+BentoCell.displayName = "BentoCell";
 
 export { BentoCell };
